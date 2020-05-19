@@ -65,7 +65,13 @@ public class UserPresenterIT extends JcrPresenceTestSupport {
     @Test
     public void testUserPresence() throws Exception {
         // sling-readall user
-        assertThat(countUserPresences("sling-readall", false, true)).isEqualTo(1);
+        with().
+            pollInterval(1, SECONDS).
+            then().
+            await().
+            alias("counting user presences (sling-readall)").
+            atMost(10, SECONDS).
+            until(() -> countUserPresences("sling-readall", false, true) == 1);
 
         // test user
         assertThat(isUserPresent("test")).isFalse();
