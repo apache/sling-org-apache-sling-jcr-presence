@@ -1,4 +1,6 @@
 github:
+  dependabot_alerts: false
+  dependabot_updates: false
   autolink_jira:
   - "SLING"
   - "OAK"
