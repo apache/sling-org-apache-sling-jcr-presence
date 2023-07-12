@@ -69,16 +69,8 @@ public abstract class JcrPresenceTestSupport extends TestSupport {
             mavenBundle().groupId("com.googlecode.java-diff-utils").artifactId("diffutils").versionAsInProject(),
             newConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist")
                 .put("whitelist.bundles.regexp", "PAXEXAM-PROBE-.*")
-                .asOption(),
-            jacoco() // remove with Testing PaxExam 4.0
+                .asOption()
         );
-    }
-
-    // remove with Testing PaxExam 4.0
-    protected OptionalCompositeOption jacoco() {
-        final String jacocoCommand = System.getProperty("jacoco.command");
-        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
-        return when(Objects.nonNull(option)).useOptions(option);
     }
 
     protected Option slingQuickstart() {
