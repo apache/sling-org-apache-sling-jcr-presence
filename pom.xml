@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.sling</groupId>
     <artifactId>sling-bundle-parent</artifactId>
-    <version>43</version>
+    <version>51</version>
     <relativePath />
   </parent>
 
@@ -35,8 +35,6 @@
   <description>Apache Sling JCR Presence</description>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <sling.java.version>8</sling.java.version>
     <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
   </properties>
@@ -102,12 +100,12 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi.cmpn</artifactId>
+      <artifactId>org.osgi.framework</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi.core</artifactId>
+      <artifactId>org.osgi.service.cm</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
