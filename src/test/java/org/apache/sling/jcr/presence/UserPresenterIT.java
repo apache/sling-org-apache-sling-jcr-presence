@@ -37,9 +37,10 @@ import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.osgi.framework.ServiceReference;
 
-import static com.google.common.truth.Truth.assertThat;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.with;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.factoryConfiguration;
 
@@ -74,11 +75,11 @@ public class UserPresenterIT extends JcrPresenceTestSupport {
             until(() -> countUserPresences("sling-readall", false, true) == 1);
 
         // test user
-        assertThat(isUserPresent("test")).isFalse();
-        assertThat(countUserPresences("test", false, true)).isEqualTo(0);
+        assertThat(isUserPresent("test"), is(false));
+        assertThat(countUserPresences("test", false, true), is(0));
 
         createUser("test", true);
-        assertThat(isUserPresent("test")).isTrue();
+        assertThat(isUserPresent("test"), is(true));
 
         with().
             pollInterval(1, SECONDS).
@@ -89,7 +90,7 @@ public class UserPresenterIT extends JcrPresenceTestSupport {
             until(() -> countUserPresences("test", false, true) == 1);
 
         disableUser("test");
-        assertThat(isUserPresent("test")).isTrue();
+        assertThat(isUserPresent("test"), is(true));
 
         with().
             pollInterval(1, SECONDS).
@@ -100,7 +101,7 @@ public class UserPresenterIT extends JcrPresenceTestSupport {
             until(() -> countUserPresences("test", true, true) == 1);
 
         removeUser("test");
-        assertThat(isUserPresent("test")).isFalse();
+        assertThat(isUserPresent("test"), is(false));
 
         with().
             pollInterval(1, SECONDS).
